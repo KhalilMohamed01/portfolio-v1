@@ -54,13 +54,7 @@ const projects: Project[] = [
       'Created interfaces for managing club members and events.',
       'Developed a student-facing interface for discovering clubs and upcoming events.',
     ],
-    technologies: [
-      'MongoDB',
-      'Express.js',
-      'React',
-      'Node.js',
-      'JWT',
-    ],
+    technologies: ['MongoDB', 'Express.js', 'React', 'Node.js', 'JWT'],
   },
 
   {
@@ -72,14 +66,7 @@ const projects: Project[] = [
       'Built an Angular dashboard to visualize historical data, statistics, and predictions.',
       'Developed a Flask API to expose the forecasting models and manage data.',
     ],
-    technologies: [
-      'Python',
-      'SARIMA',
-      'Prophet',
-      'Flask',
-      'Angular',
-      'TypeScript',
-    ],
+    technologies: ['Python', 'SARIMA', 'Prophet', 'Flask', 'Angular', 'TypeScript'],
   },
 
   {
@@ -92,35 +79,32 @@ const projects: Project[] = [
       'Built a parent interface for viewing children’s invoices and payment status.',
       'Integrated secure online payments using Stripe.',
     ],
-    technologies: [
-      'LARAVEL',
-      'PHP',
-      'Email Automation',
-      'Stripe',
-    ],
+    technologies: ['LARAVEL', 'PHP', 'Email Automation', 'Stripe'],
   },
 ]
 
 const selectedIndex = ref(0)
 
-const selectedProject = computed(() => projects[selectedIndex.value])
+const selectedProject = computed<Project>(() => {
+  const project = projects[selectedIndex.value]
+
+  if (project) {
+    return project
+  }
+
+  return projects[0]!
+})
 
 function selectProject(index: number) {
   selectedIndex.value = index
 }
 
 function selectPrevious() {
-  selectedIndex.value =
-    selectedIndex.value === 0
-      ? projects.length - 1
-      : selectedIndex.value - 1
+  selectedIndex.value = selectedIndex.value === 0 ? projects.length - 1 : selectedIndex.value - 1
 }
 
 function selectNext() {
-  selectedIndex.value =
-    selectedIndex.value === projects.length - 1
-      ? 0
-      : selectedIndex.value + 1
+  selectedIndex.value = selectedIndex.value === projects.length - 1 ? 0 : selectedIndex.value + 1
 }
 
 function handleKeyboard(event: KeyboardEvent) {
@@ -146,16 +130,12 @@ onUnmounted(() => {
   <section class="projects">
     <div class="terminal">
       <!-- Command -->
-      <p class="command">
-        <span class="prompt">&gt;</span> projects
-      </p>
+      <p class="command"><span class="prompt">&gt;</span> projects</p>
 
       <div class="explorer">
         <!-- Project list -->
         <aside class="project-list">
-          <p class="list-title">
-            projects/
-          </p>
+          <p class="list-title">projects/</p>
 
           <button
             v-for="(project, index) in projects"
@@ -173,46 +153,31 @@ onUnmounted(() => {
               {{ project.title }}
             </span>
 
-            <span
-              v-if="index === selectedIndex"
-              class="selection-arrow"
-            >
-              &gt;
-            </span>
+            <span v-if="index === selectedIndex" class="selection-arrow"> &gt; </span>
           </button>
 
-          <p class="navigation-hint">
-            ↑ ↓ select
-          </p>
+          <p class="navigation-hint">↑ ↓ select</p>
         </aside>
 
         <!-- Project details -->
         <main class="project-details">
           <div class="details-header">
-            <span class="project-index">
-              [{{ String(selectedIndex + 1).padStart(2, '0') }}]
-            </span>
+            <span class="project-index"> [{{ String(selectedIndex + 1).padStart(2, '0') }}] </span>
 
             <h2>
               {{ selectedProject.title }}
             </h2>
           </div>
 
-          <div class="separator">
-            ─────────────────────────────────
-          </div>
+          <div class="separator">─────────────────────────────────</div>
 
-          <p class="label">
-            description
-          </p>
+          <p class="label">description</p>
 
           <p class="description">
             {{ selectedProject.description }}
           </p>
 
-          <p class="label">
-            stack
-          </p>
+          <p class="label">stack</p>
 
           <div class="technologies">
             <span
@@ -248,28 +213,14 @@ onUnmounted(() => {
 
       <!-- Bottom navigation -->
       <div class="explorer-footer">
-        <button
-          type="button"
-          @click="selectPrevious"
-        >
-          ← previous
-        </button>
+        <button type="button" @click="selectPrevious">← previous</button>
 
-        <span>
-          {{ selectedIndex + 1 }} / {{ projects.length }}
-        </span>
+        <span> {{ selectedIndex + 1 }} / {{ projects.length }} </span>
 
-        <button
-          type="button"
-          @click="selectNext"
-        >
-          next →
-        </button>
+        <button type="button" @click="selectNext">next →</button>
       </div>
 
-      <p class="keyboard-hint">
-        use ↑ ↓ or ← → to explore projects
-      </p>
+      <p class="keyboard-hint">use ↑ ↓ or ← → to explore projects</p>
 
       <span class="cursor">_</span>
     </div>

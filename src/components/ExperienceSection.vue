@@ -68,13 +68,7 @@ const experiences: Experience[] = [
       'Designed the PostgreSQL database and implemented CRUD operations and persistence with JPA.',
       'Wrote and executed functional API and UI tests and fixed identified issues.',
     ],
-    technologies: [
-      'Java',
-      'Spring Boot',
-      'Angular',
-      'PostgreSQL',
-      'JPA',
-    ],
+    technologies: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'JPA'],
   },
 ]
 
@@ -82,8 +76,15 @@ const currentPage = ref(0)
 
 const totalPages = computed(() => experiences.length)
 
-const currentExperience = computed(() => experiences[currentPage.value])
+const currentExperience = computed<Experience>(() => {
+  const experience = experiences[currentPage.value]
 
+  if (experience) {
+    return experience
+  }
+
+  return experiences[0]!
+})
 const hasPrevious = computed(() => currentPage.value > 0)
 
 const hasNext = computed(() => currentPage.value < totalPages.value - 1)
@@ -125,9 +126,7 @@ onUnmounted(() => {
   <section class="experience">
     <div class="terminal">
       <!-- Command -->
-      <p class="command">
-        <span class="prompt">&gt;</span> experience
-      </p>
+      <p class="command"><span class="prompt">&gt;</span> experience</p>
 
       <!-- Experience -->
       <article class="experience-card">
@@ -156,24 +155,16 @@ onUnmounted(() => {
         </div>
 
         <ul class="responsibilities">
-          <li
-            v-for="responsibility in currentExperience.responsibilities"
-            :key="responsibility"
-          >
+          <li v-for="responsibility in currentExperience.responsibilities" :key="responsibility">
             {{ responsibility }}
           </li>
         </ul>
 
         <p class="technologies">
           [
-          <span
-            v-for="(technology, index) in currentExperience.technologies"
-            :key="technology"
-          >
+          <span v-for="(technology, index) in currentExperience.technologies" :key="technology">
             {{ technology }}
-            <span v-if="index < currentExperience.technologies.length - 1">
-              ·
-            </span>
+            <span v-if="index < currentExperience.technologies.length - 1"> · </span>
           </span>
           ]
         </p>
