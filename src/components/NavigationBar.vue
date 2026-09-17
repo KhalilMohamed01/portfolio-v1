@@ -27,95 +27,111 @@ const navigationItems: NavigationItem[] = [
   },
 ]
 
-const scrollToSection = (target: string) => {
-  document.getElementById(target)?.scrollIntoView({
-    behavior: 'smooth',
-  })
-}
+defineProps<{
+  darkMode: boolean
+}>()
+
+const emit = defineEmits<{
+  navigate: [target: string]
+  toggleTheme: []
+}>()
 </script>
 
 <template>
-  <nav class="navigation-bar">
-    <div class="navigation-inner">
+  <nav class="navigation">
+    <div class="navigation-links">
       <button
         v-for="item in navigationItems"
         :key="item.target"
         type="button"
         class="navigation-item"
-        @click="scrollToSection(item.target)"
+        @click="emit('navigate', item.target)"
       >
-        <span class="caret">&gt;</span>
-        <span class="label">{{ item.label }}</span>
+        <span>&gt;</span>
+        {{ item.label }}
       </button>
     </div>
+
+    <button
+      type="button"
+      class="theme-toggle"
+      @click="emit('toggleTheme')"
+    >
+      [ {{ darkMode ? 'dark' : 'light' }} ]
+    </button>
   </nav>
 </template>
 
 <style scoped>
-.navigation-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-
+.navigation {
+  height: 10vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  padding: 28px 16px;
-
-  background: transparent;
-
-  z-index: 100;
-}
-
-.navigation-inner {
-  display: flex;
-  gap: clamp(18px, 3vw, 46px);
-
-  flex-wrap: wrap;
   justify-content: center;
+  gap: 2rem;
+  position: relative;
 }
 
-.navigation-item {
-  background: none;
+.navigation-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.navigation-item,
+.theme-toggle {
   border: none;
-
-  padding: 4px 2px;
-
-  display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
-
-  font-family: inherit;
-  font-size: 22px;
-  letter-spacing: 0.5px;
-
+  padding: 0;
+  background: transparent;
   color: inherit;
-
+  font: inherit;
+  font-size: 1.4rem;
   cursor: pointer;
-
-  transition: transform 0.15s ease;
 }
 
-.caret {
-  opacity: 1;
-}
-
-.label {
-  border-bottom: 1px solid transparent;
-
-  transition: border-color 0.15s ease;
+.navigation-item span {
+  margin-right: 0.25rem;
 }
 
 .navigation-item:hover,
-.navigation-item:focus-visible {
-  transform: translateY(-4px);
+.navigation-item:focus-visible,
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  text-decoration: underline;
+}
+
+.navigation-item:focus-visible,
+.theme-toggle:focus-visible {
   outline: none;
 }
 
-.navigation-item:hover .label,
-.navigation-item:focus-visible .label {
-  border-color: currentColor;
+.theme-toggle {
+  position: absolute;
+  right: 2rem;
+  font-size: 1.1rem;
+  opacity: 0.7;
+}
+
+@media (max-width: 900px) {
+  .navigation {
+    height: auto;
+    min-height: 10vh;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .navigation-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .theme-toggle {
+    position: static;
+  }
+
+  .navigation-item {
+    font-size: 1.1rem;
+  }
 }
 </style>
