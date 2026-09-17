@@ -10,11 +10,7 @@ interface Profile {
   introduction: string
 }
 
-interface ExperienceSummary {
-  internships: number
-  contracts: number
-  focus: string
-}
+
 
 interface Skill {
   name: string
@@ -35,11 +31,6 @@ const profile: Profile = {
     'I am a software engineer passionate about building reliable and useful software. During my studies, I gained hands-on experience through three internships and a fixed-term contract, primarily working on full-stack applications.',
 }
 
-const experienceSummary: ExperienceSummary = {
-  internships: 3,
-  contracts: 1,
-  focus: 'Full-stack development',
-}
 
 const skills: Skill[] = [
   { name: 'Java', category: 'language' },
