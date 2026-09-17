@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import TypingText from './TypingText.vue'
 
 interface Profile {
@@ -66,6 +67,8 @@ const currentlyLearning: LearningTopic[] = [
 ]
 
 const hobbies: string[] = ['Chess', 'Football', 'Video games']
+
+const showRole = ref(false)
 </script>
 
 <template>
@@ -73,15 +76,27 @@ const hobbies: string[] = ['Chess', 'Football', 'Video games']
     <div class="terminal">
       <p class="command"><span class="prompt">&gt;</span> whoami</p>
 
-      <div class="profile">
-        <h1>{{ profile.name }}</h1>
+    <div class="profile">
+      <h1>
+        <TypingText
+          :text="profile.name"
+          :speed="50"
+          @finished="showRole = true"
+        />
+      </h1>
 
-        <p class="role">{{ profile.role }} · Class of {{ profile.graduationYear }}</p>
+      <p class="role">
+        <TypingText
+          v-if="showRole"
+          :text="`${profile.role} · Class of ${profile.graduationYear}`"
+          :speed="40"
+        />
+      </p>
 
-        <p class="introduction">
-          <TypingText :text="profile.introduction" :speed="30" />
-        </p>
-      </div>
+      <p class="introduction">
+        {{ profile.introduction }}
+      </p>
+    </div>
 
       <p class="command"><span class="prompt">&gt;</span> skills</p>
 

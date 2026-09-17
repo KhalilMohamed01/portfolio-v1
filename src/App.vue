@@ -8,12 +8,10 @@ import ProjectSection from './components/ProjectSection.vue'
 import EducationSection from './components/EducationSection.vue'
 import AskMeAnythingSection from './components/AskMeAnythingSection.vue'
 
-type Section =
-  | 'who'
-  | 'experience'
-  | 'projects'
-  | 'education'
-  | 'ask'
+import { faLinkedin, faGithub, faXTwitter } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+type Section = 'who' | 'experience' | 'projects' | 'education' | 'ask'
 
 const activeSection = ref<Section>('who')
 const darkMode = ref(true)
@@ -28,7 +26,6 @@ function toggleTheme() {
 </script>
 
 <template>
-
   <div class="app" :class="{ 'dark-mode': darkMode }">
     <NavigationBar
       :dark-mode="darkMode"
@@ -47,6 +44,29 @@ function toggleTheme() {
 
       <AskMeAnythingSection v-else-if="activeSection === 'ask'" />
     </main>
+    <div class="social-links">
+      <a
+        href="https://www.linkedin.com/in/mohamed-khalil-gi/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+      >
+        <FontAwesomeIcon :icon="faLinkedin" />
+      </a>
+
+      <a
+        href="https://github.com/KhalilMohamed01"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+      >
+        <FontAwesomeIcon :icon="faGithub" />
+      </a>
+
+      <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X">
+        <FontAwesomeIcon :icon="faXTwitter" />
+      </a>
+    </div>
   </div>
 </template>
 
@@ -58,9 +78,7 @@ function toggleTheme() {
 
   background: #f5f5f5;
   color: #111;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .app.dark-mode {
@@ -72,5 +90,29 @@ function toggleTheme() {
   width: 100%;
   height: 90vh;
   overflow: hidden;
+}
+.social-links {
+  position: fixed;
+  left: 2rem;
+  bottom: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  z-index: 10;
+}
+
+.social-links a {
+  color: inherit;
+  font-size: 1.5rem;
+  opacity: 0.7;
+
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.social-links a:hover {
+  opacity: 1;
+  transform: translateX(3px);
 }
 </style>
