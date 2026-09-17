@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import TypingText from './TypingText.vue'
+
 interface Profile {
   name: string
   role: string
@@ -63,71 +65,45 @@ const currentlyLearning: LearningTopic[] = [
   },
 ]
 
-const hobbies: string[] = [
-  'Chess',
-  'Football',
-  'Video games',
-]
+const hobbies: string[] = ['Chess', 'Football', 'Video games']
 </script>
 
 <template>
   <section class="who-am-i">
     <div class="terminal">
-      <p class="command">
-        <span class="prompt">&gt;</span> whoami
-      </p>
+      <p class="command"><span class="prompt">&gt;</span> whoami</p>
 
       <div class="profile">
         <h1>{{ profile.name }}</h1>
 
-        <p class="role">
-          {{ profile.role }} · Class of {{ profile.graduationYear }}
-        </p>
+        <p class="role">{{ profile.role }} · Class of {{ profile.graduationYear }}</p>
 
         <p class="introduction">
-          {{ profile.introduction }}
+          <TypingText :text="profile.introduction" :speed="30" />
         </p>
       </div>
 
-      <p class="command">
-        <span class="prompt">&gt;</span> skills
-      </p>
+      <p class="command"><span class="prompt">&gt;</span> skills</p>
 
       <div class="skills">
-        <span
-          v-for="skill in skills"
-          :key="skill.name"
-          class="skill"
-        >
+        <span v-for="skill in skills" :key="skill.name" class="skill">
           {{ skill.name }}
         </span>
       </div>
 
-      <p class="command">
-        <span class="prompt">&gt;</span> currently-learning
-      </p>
+      <p class="command"><span class="prompt">&gt;</span> currently-learning</p>
 
       <div class="learning">
-        <span
-          v-for="topic in currentlyLearning"
-          :key="topic.name"
-          class="learning-item"
-        >
+        <span v-for="topic in currentlyLearning" :key="topic.name" class="learning-item">
           {{ topic.name }}
           <span v-if="topic.focus">({{ topic.focus }})</span>
         </span>
       </div>
 
-      <p class="command">
-        <span class="prompt">&gt;</span> hobbies
-      </p>
+      <p class="command"><span class="prompt">&gt;</span> hobbies</p>
 
       <div class="hobbies">
-        <span
-          v-for="hobby in hobbies"
-          :key="hobby"
-          class="hobby"
-        >
+        <span v-for="hobby in hobbies" :key="hobby" class="hobby">
           {{ hobby }}
         </span>
       </div>
