@@ -1,5 +1,17 @@
 # Profile
 
+```yaml
+type: profile
+name: Mohamed Khalil
+role: Software Engineer
+focus:
+  - Full-Stack Development
+  - Artificial Intelligence
+  - Large Language Models
+  - Retrieval-Augmented Generation
+  - AI Agents
+```
+
 ## Overview
 
 Mohamed Khalil is a software engineer and computer science graduate with a full-stack development background and a growing focus on artificial intelligence, Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), and AI agents.

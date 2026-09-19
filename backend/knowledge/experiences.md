@@ -5,15 +5,19 @@
 Mohamed Khalil has gained professional experience through three internships and one fixed-term contract. His experience covers full-stack development, backend development, frontend development, databases, data processing, automation, application deployment, and working with existing software systems.
 
 * **SAD Marketing — Web Developer, Fixed-Term Contract (CDD)**
+
   December 2025 – January 2026 · Approximately 2 months · Villeneuve-d'Ascq, France
 
 * **SAD Marketing — Web Developer, Final-Year Engineering Internship**
+
   May 2025 – November 2025 · 6 months · Villeneuve-d'Ascq, France
 
 * **Walden Digital — Frontend Developer, Internship**
+
   June 2024 – September 2024 · 4 months · Cournon-d'Auvergne, France
 
 * **RABBAH SOFT — Full-Stack Developer, Professional Bachelor's Degree Final Internship**
+
   April 2022 – June 2022 · 2 months · Casablanca, Morocco
 
 Across these experiences, Mohamed worked with technologies including Python, Java, Spring Boot, Flask, Angular, Vue.js, PostgreSQL, Hibernate, Spring Data JPA, REST APIs, Git, GitLab, Mercurial, Figma, and data-processing tools. His professional experience progressively increased his autonomy, from contributing to features within a development team to independently handling the development and deployment of a complete application.
@@ -21,6 +25,22 @@ Across these experiences, Mohamed worked with technologies including Python, Jav
 ---
 
 # SAD Marketing — Fixed-Term Contract
+
+```yaml
+type: experience
+company: SAD Marketing
+role: Web Developer
+employment_type: fixed-term contract
+start_date: 2025-12
+end_date: 2026-01
+location: Villeneuve-d'Ascq, France
+technologies:
+  - Python
+  - Excel
+  - Data Processing
+  - Automation
+  - Email
+```
 
 Mohamed worked at SAD Marketing as a Web Developer under a fixed-term contract from December 2025 to January 2026, following his final-year engineering internship at the same company. SAD Marketing specializes in marketing and market research, including market studies, catchment area studies, customer prospecting, and CAP studies. Mohamed was primarily involved in the technical side of the company rather than directly participating in its marketing activities.
 
@@ -35,6 +55,22 @@ The main technical difficulty was the heterogeneity of the customer data. Differ
 ---
 
 # SAD Marketing — Final-Year Engineering Internship
+
+```yaml
+type: experience
+company: SAD Marketing
+role: Web Developer
+employment_type: internship
+start_date: 2025-05
+end_date: 2025-11
+location: Villeneuve-d'Ascq, France
+technologies:
+  - Vue.js
+  - Flask
+  - Python
+  - PostgreSQL
+  - Git
+```
 
 Mohamed completed his final-year engineering internship at SAD Marketing from May 2025 to November 2025. The internship lasted six months and his position was Web Developer. The main technologies used during the project were Vue.js, Flask, PostgreSQL, Python, and Git.
 
@@ -53,6 +89,23 @@ At the end of the internship, Mohamed deployed the application on the company's 
 ---
 
 # Walden Digital — Frontend Developer Internship
+
+```yaml
+type: experience
+company: Walden Digital
+role: Frontend Developer
+employment_type: internship
+start_date: 2024-06
+end_date: 2024-09
+location: Cournon-d'Auvergne, France
+technologies:
+  - Angular
+  - TypeScript
+  - Flask
+  - HTTP APIs
+  - Figma
+  - Mercurial
+```
 
 Mohamed completed a frontend development internship at Walden Digital from June 2024 to September 2024. The company specializes in digital solutions and web application development. During the internship, Mohamed worked as a Frontend Developer with Angular, TypeScript, Flask, HTTP APIs, Figma, and Mercurial.
 
@@ -73,6 +126,25 @@ The internship strengthened Mohamed's Angular and TypeScript skills and gave him
 ---
 
 # RABBAH SOFT — Full-Stack Developer Internship
+
+```yaml
+type: experience
+company: RABBAH SOFT
+role: Full-Stack Developer
+employment_type: internship
+start_date: 2022-04
+end_date: 2022-06
+location: Casablanca, Morocco
+technologies:
+  - Java
+  - Spring Boot
+  - Angular
+  - PostgreSQL
+  - Hibernate
+  - Spring Data JPA
+  - REST APIs
+  - GitLab
+```
 
 Mohamed completed his professional bachelor's degree final internship at RABBAH SOFT from April 2022 to June 2022 in Casablanca, Morocco. RABBAH SOFT is a small IT company specializing in IT solutions, including web and mobile applications, solution integration, and IT consulting. His position was Full-Stack Developer, and the main technologies used were Java, Spring Boot, Angular, PostgreSQL, Hibernate, Spring Data JPA, REST APIs, and GitLab.
 

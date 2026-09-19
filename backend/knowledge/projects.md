@@ -4,18 +4,53 @@
 
 Mohamed Khalil has built several academic and personal software projects covering full-stack web development, artificial intelligence, data science, real-time applications, payment management, and data processing.
 
-* **AI-Powered Job Application Tracker** — Full-stack application combining job application management, AI-powered job analysis, tailored application content generation, email synchronization, and analytics.
-* **School Clubs Management Platform** — Full-stack web application for managing school clubs, events, students, and club-manager workflows.
-* **Automotive Sales Forecasting** — Data science application using SARIMA and Prophet to forecast automotive sales through a Flask API and Angular dashboard.
-* **School Payment Management Platform** — Web application for managing school fees, invoices, parent accounts, administrative workflows, email communication, and Stripe payments.
-* **Chess Learning Platform** — Personal project built around chess learning, game analysis, mistakes detection using Stockfish, and chess puzzles.
-* **Valorant Competitive Platform** — Personal project designed around competitive Valorant leagues, real-time features, player performance, team formation, and map selection.
+AI-Powered Job Application Tracker — Full-stack application combining job application management, AI-powered job analysis, tailored application content generation, email synchronization, and analytics.
+
+School Clubs Management Platform — Full-stack web application for managing school clubs, events, students, and club-manager workflows.
+
+Automotive Sales Forecasting — Data science application using SARIMA and Prophet to forecast automotive sales through a Flask API and Angular dashboard.
+
+School Payment Management Platform — Web application for managing school fees, invoices, parent accounts, administrative workflows, email communication, and Stripe payments.
+
+Chess Learning Platform — Personal project built around chess learning, game analysis, mistakes detection using Stockfish, and chess puzzles.
+
+Valorant Competitive Platform — Personal project designed around competitive Valorant leagues, real-time features, player performance, team formation, and map selection.
 
 Mohamed often uses projects as practical learning environments. He generally starts with an idea or problem that interests him and then identifies the technologies and concepts required to implement it. This allows him to learn through concrete development rather than only through isolated exercises or tutorials. When learning from documentation or tutorials, he prefers adapting the concepts to his own projects rather than reproducing the original example exactly.
 
----
-
 # AI-Powered Job Application Tracker
+
+```yaml
+type: project
+name: AI-Powered Job Application Tracker
+technologies:
+  - Java
+  - Spring Boot
+  - Spring Boot 4
+  - Spring Security
+  - JWT
+  - BCrypt
+  - PostgreSQL
+  - JPA
+  - Hibernate
+  - DTOs
+  - OpenAI
+  - LaTeX
+  - FreeMarker
+  - pdflatex
+  - MiKTeX
+  - Microsoft Graph API
+  - OAuth2
+  - Jsoup
+  - Ollama
+  - Vue.js
+  - Vue 3
+  - TypeScript
+  - Pinia
+  - Vue Router
+  - Tailwind CSS
+  - Docker Compose
+```
 
 The AI-Powered Job Application Tracker is a full-stack platform designed to help manage and improve the job application process. The application combines traditional software engineering with artificial intelligence to analyze job offers, compare them with a candidate's profile, select relevant experiences and projects, generate tailored application content, and track applications throughout the recruitment process.
 
@@ -35,9 +70,22 @@ The frontend is built with Vue 3, TypeScript, the Composition API, Pinia, Vue Ro
 
 This project allowed Mohamed to explore full-stack development, REST API design, authentication and authorization, PostgreSQL, database design, AI integration, multi-step LLM pipelines, prompt-based processing, email automation, OAuth2, document generation, analytics, and Docker. It is also one of his main projects for exploring how artificial intelligence can be integrated into a traditional software application.
 
----
-
 # School Clubs Management Platform
+
+```yaml
+type: project
+name: School Clubs Management Platform
+technologies:
+  - MongoDB
+  - Express.js
+  - React
+  - Node.js
+  - MERN
+  - REST APIs
+  - JWT
+  - Authentication
+  - Role-Based Access Control
+```
 
 The School Clubs Management Platform is a full-stack web application designed to help manage school clubs and their events. The application provides different functionality for club managers and students.
 
@@ -49,9 +97,22 @@ The project uses the MERN stack: MongoDB for data storage, Express.js for the ba
 
 Through this project, Mohamed worked with full-stack JavaScript development, REST APIs, JWT authentication, CRUD operations, MongoDB, React, Express.js, Node.js, and role-based access control.
 
----
-
 # Automotive Sales Forecasting
+
+```yaml
+type: project
+name: Automotive Sales Forecasting
+technologies:
+  - Python
+  - SARIMA
+  - Prophet
+  - Flask
+  - Angular
+  - TypeScript
+  - REST APIs
+  - Time-Series Forecasting
+  - Data Visualization
+```
 
 The Automotive Sales Forecasting project is a data science application designed to forecast automotive sales using historical data. The project combines statistical forecasting models with a web-based dashboard so that analytical results can be accessed and visualized through an application.
 
@@ -61,9 +122,22 @@ A Flask API provides access to the forecasting functionality and acts as the con
 
 This project allowed Mohamed to explore the intersection between software engineering and data science. He worked with time-series forecasting, statistical models, Python, Flask APIs, Angular dashboards, data visualization, and the integration of analytical models into a web application.
 
----
-
 # School Payment Management Platform
+
+```yaml
+type: project
+name: School Payment Management Platform
+technologies:
+  - PHP
+  - LARAVEL
+  - Web Development
+  - Stripe
+  - Payment Processing
+  - Email
+  - Invoicing
+  - Authentication
+  - REST APIs
+```
 
 The School Payment Management Platform is a web application designed to manage school fee payments and related administrative workflows. The system provides functionality for both parents and school administrators.
 
@@ -73,9 +147,18 @@ The platform integrates Stripe for online payment processing, allowing parents t
 
 The project includes parent accounts, an administrative interface, school fee management, invoice management, email communication, and online payments. It therefore combines user management, administrative workflows, payment processing, invoicing, email communication, and third-party API integration within a full-stack web application.
 
----
-
 # Chess Learning Platform
+
+```yaml
+type: project
+name: Chess Learning Platform
+technologies:
+  - ReactJS
+  - NodeJS
+  - Chess
+  - Stockfish
+  - PostgreSQL
+```
 
 The Chess Learning Platform is a personal project that Mohamed built around his interest in chess and his goal of using software to support his own learning.
 
@@ -85,9 +168,18 @@ The platform also includes the idea of chess puzzles and opening learning. The p
 
 The project reflects Mohamed's approach to learning through building. Rather than studying chess only through existing platforms, he used his interest in chess as an opportunity to build software around the problems he personally wanted to solve.
 
----
-
 # Valorant Competitive Platform
+
+```yaml
+type: project
+name: Valorant Competitive Platform
+technologies:
+  - ReactJS
+  - NodeJS
+  - WebSockets
+  - Real-Time Communication
+  - PostgreSQL
+```
 
 The Valorant Competitive Platform is a personal project that Mohamed built around competitive gaming and his interest in real-time web technologies.
 
@@ -99,8 +191,6 @@ One of the main technical motivations behind the project was learning WebSockets
 
 The project combines his interest in competitive games with his interest in learning new software technologies and experimenting with real-time application architecture.
 
----
-
 # Project Development Approach
 
 Mohamed frequently uses personal and academic projects as learning environments. Instead of learning a technology only through isolated exercises, he often starts with an idea or problem that interests him and then determines which technologies and concepts are needed to implement it.
@@ -110,8 +200,6 @@ This approach can be seen across several projects. The AI-powered job applicatio
 When following tutorials or documentation, Mohamed generally adapts the concepts to his own ideas rather than reproducing the original example exactly. This allows him to use projects as practical environments for understanding technologies, architectures, and technical problems.
 
 Some projects were primarily developed as personal or academic learning projects rather than as products intended for public deployment. They are nevertheless built projects that allowed Mohamed to explore specific technologies and solve concrete problems.
-
----
 
 # Technical Areas Explored
 

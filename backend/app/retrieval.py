@@ -11,6 +11,8 @@ EMBEDDING_MODEL = "text-embedding-3-small"
 def search_knowledge(
     query: str,
     match_count: int = 20,
+    filter_type: str | None = None,
+    filter_technology: str | None = None,
 ) -> list[dict]:
     embedding_response = client.embeddings.create(
         model=EMBEDDING_MODEL,
@@ -24,6 +26,8 @@ def search_knowledge(
         {
             "query_embedding": query_embedding,
             "match_count": match_count,
+            "filter_type": filter_type,
+            "filter_technology": filter_technology,
         },
     ).execute()
 

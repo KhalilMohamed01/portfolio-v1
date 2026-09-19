@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import yaml
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -17,7 +18,95 @@ EMBEDDING_MODEL = "text-embedding-3-small"
 CHUNK_SIZE = 1500
 
 
-def split_into_chunks(text: str, chunk_size: int = CHUNK_SIZE) -> list[str]:
+def split_into_entries(text: str) -> list[tuple[dict, str]]:
+    """
+    Split a Markdown document into top-level sections.
+
+    A section starts with a level-1 Markdown heading.
+    A YAML metadata block inside that section identifies
+    it as a structured knowledge entry.
+
+    Sections without metadata are still preserved as
+    document-level content.
+    """
+
+    lines = text.splitlines()
+
+    sections: list[tuple[dict, str]] = []
+
+    current_content: list[str] = []
+    current_metadata: dict = {}
+
+    def flush_section() -> None:
+        nonlocal current_content
+        nonlocal current_metadata
+
+        content = "\n".join(current_content).strip()
+
+        if content:
+            sections.append(
+                (
+                    current_metadata,
+                    content,
+                )
+            )
+
+        current_content = []
+        current_metadata = {}
+
+    index = 0
+
+    while index < len(lines):
+        line = lines[index]
+        stripped = line.strip()
+
+        # A level-1 heading starts a new section.
+        if stripped.startswith("# ") and not stripped.startswith("## "):
+            flush_section()
+
+            current_content = [line]
+
+            index += 1
+            continue
+
+        # YAML metadata block.
+        if stripped == "```yaml":
+            yaml_lines: list[str] = []
+
+            index += 1
+
+            while index < len(lines):
+                yaml_line = lines[index]
+
+                if yaml_line.strip() == "```":
+                    break
+
+                yaml_lines.append(yaml_line)
+                index += 1
+
+            metadata = yaml.safe_load("\n".join(yaml_lines))
+
+            if not isinstance(metadata, dict):
+                raise ValueError(
+                    "YAML metadata must contain a mapping/object."
+                )
+
+            current_metadata = metadata
+
+            index += 1
+            continue
+
+        current_content.append(line)
+
+        index += 1
+
+    flush_section()
+
+    return sections
+def split_into_chunks(
+    text: str,
+    chunk_size: int = CHUNK_SIZE,
+) -> list[str]:
     """
     Split Markdown into meaningful chunks while preserving heading hierarchy.
 
@@ -29,13 +118,6 @@ def split_into_chunks(text: str, chunk_size: int = CHUNK_SIZE) -> list[str]:
 
     chunks: list[str] = []
 
-    # Stores the current heading for each Markdown level.
-    # Example:
-    # {
-    #     1: "# SAD Marketing",
-    #     2: "## Final-Year Engineering Internship",
-    #     3: "### Project",
-    # }
     heading_stack: dict[int, str] = {}
 
     current_body: list[str] = []
@@ -95,29 +177,25 @@ def split_into_chunks(text: str, chunk_size: int = CHUNK_SIZE) -> list[str]:
         stripped = line.strip()
 
         if stripped.startswith("#"):
-            # Finish the content belonging to the previous heading.
             flush_body()
 
-            # Determine heading level.
             level = len(stripped) - len(stripped.lstrip("#"))
 
-            # Remove deeper heading levels.
             heading_stack = {
                 existing_level: heading
                 for existing_level, heading in heading_stack.items()
                 if existing_level < level
             }
 
-            # Add the new heading.
             heading_stack[level] = stripped
 
         else:
             current_body.append(line)
 
-    # Flush the final content.
     flush_body()
 
     return chunks
+
 
 def create_embedding(text: str) -> list[float]:
     """Create an embedding for a knowledge chunk."""
@@ -131,7 +209,7 @@ def create_embedding(text: str) -> list[float]:
 
 
 def ingest_file(file_path: Path) -> None:
-    """Ingest one Markdown file into Supabase."""
+    """Ingest one Markdown knowledge file into Supabase."""
 
     source = file_path.name
     category = file_path.stem
@@ -140,9 +218,9 @@ def ingest_file(file_path: Path) -> None:
 
     content = file_path.read_text(encoding="utf-8")
 
-    chunks = split_into_chunks(content)
+    entries = split_into_entries(content)
 
-    print(f"  Found {len(chunks)} chunks")
+    print(f"  Found {len(entries)} entries")
 
     # Remove existing chunks belonging to this file.
     supabase.table("knowledge_chunks").delete().eq(
@@ -152,22 +230,47 @@ def ingest_file(file_path: Path) -> None:
 
     print("  Removed previous chunks")
 
-    for index, chunk in enumerate(chunks, start=1):
-        embedding = create_embedding(chunk)
+    total_chunks = 0
 
-        supabase.table("knowledge_chunks").insert(
-            {
-                "content": chunk,
-                "embedding": embedding,
-                "source": source,
-                "category": category,
-                "metadata": {
-                    "chunk_index": index,
-                },
+    for entry_index, (metadata, entry_content) in enumerate(
+        entries,
+        start=1,
+    ):
+        chunks = split_into_chunks(entry_content)
+
+        print(
+            f"  Entry {entry_index}: "
+            f"{metadata.get('name', metadata.get('degree', 'unnamed'))}"
+            f" → {len(chunks)} chunks"
+        )
+
+        for chunk_index, chunk in enumerate(chunks, start=1):
+            embedding = create_embedding(chunk)
+
+            chunk_metadata = {
+                **metadata,
+                "entry_index": entry_index,
+                "chunk_index": chunk_index,
             }
-        ).execute()
 
-        print(f"  Inserted chunk {index}/{len(chunks)}")
+            supabase.table("knowledge_chunks").insert(
+                {
+                    "content": chunk,
+                    "embedding": embedding,
+                    "source": source,
+                    "category": category,
+                    "metadata": chunk_metadata,
+                }
+            ).execute()
+
+            total_chunks += 1
+
+            print(
+                f"    Inserted chunk "
+                f"{chunk_index}/{len(chunks)}"
+            )
+
+    print(f"  Inserted {total_chunks} chunks total")
 
 
 def main() -> None:

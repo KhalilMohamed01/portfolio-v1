@@ -5,6 +5,7 @@ from openai import OpenAI
 from app.supabase_client import supabase
 from app.retrieval import search_knowledge
 from app.rag import generate_answer
+from app.query_parser import parse_query
 
 load_dotenv()
 
@@ -34,14 +35,12 @@ def test_supabase():
 
 @app.get("/api/test-retrieval")
 def test_retrieval(q: str):
-    results = search_knowledge(
-        q,
-        match_count=20,
-    )
+    results = search_knowledge(q, match_count=20)
+    return {"results": results}
 
-    return {
-        "results": results,
-    }
+@app.get("/api/test-query-parser")
+def test_query_parser(q: str):
+    return parse_query(q)
 
 @app.get("/api/ask")
 def ask(q: str):

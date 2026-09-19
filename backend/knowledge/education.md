@@ -10,6 +10,39 @@ His academic progression covers a broad range of computer science topics, includ
 
 # Engineering Degree in Computer Science
 
+```yaml
+type: education
+institution: École d'Ingénieurs du Littoral-Côte-d'Opale (EILCO)
+degree: Engineering Degree in Computer Science
+start_date: 2022-09
+end_date: 2025-12
+location: Calais, France
+specialization: Artificial Intelligence
+subjects:
+  - Computer Science
+  - Programming
+  - Algorithms
+  - Object-Oriented Programming
+  - Web Development
+  - Databases
+  - Operating Systems
+  - Computer Architecture
+  - Computer Networks
+  - Software Engineering
+  - Software Architecture
+  - Artificial Intelligence
+  - Machine Learning
+  - Deep Learning
+  - Information Systems Security
+  - Big Data
+  - Business Intelligence
+  - Mobile Application Development
+  - Embedded Systems
+  - Real-Time Systems
+  - Agile Methods
+  - Research and Development
+```
+
 ## Engineering Degree Overview
 
 Mohamed completed a three-year Engineering Degree in Computer Science at the École d'Ingénieurs du Littoral-Côte-d'Opale (EILCO) in Calais, France, from September 2022 to December 2025. The program progressively covered computer science fundamentals, programming, databases, systems, networks, web development, software engineering, artificial intelligence, and engineering and professional methodologies.
@@ -52,6 +85,35 @@ The Engineering Degree also developed broader engineering and professional skill
 
 # Professional Bachelor's Degree — GLASRRI
 
+```yaml
+type: education
+institution: École Supérieure de Technologie
+degree: Professional Bachelor's Degree in Génie Logiciel et Administration Avancée des Systèmes et Réseaux Informatiques (GLASRRI)
+start_date: 2021-09
+end_date: 2022-06
+location: Casablanca, Morocco
+subjects:
+  - Software Engineering
+  - Software Architecture
+  - Design Patterns
+  - Object-Oriented Programming
+  - Advanced Java
+  - JEE
+  - RMI
+  - Distributed Applications
+  - Android Development
+  - Django
+  - Agile Methodologies
+  - Human-Computer Interaction
+  - Data Mining
+  - Business Intelligence
+  - Linux Administration
+  - Systems Administration
+  - Network Administration
+  - CCNA
+  - IPv6
+```
+
 ## Professional Bachelor's Degree Overview
 
 From September 2021 to June 2022, Mohamed completed a Professional Bachelor's Degree in Génie Logiciel et Administration Avancée des Systèmes et Réseaux Informatiques (GLASRRI) at the École Supérieure de Technologie in Casablanca, Morocco.
@@ -83,6 +145,33 @@ The combination of software engineering and advanced systems and network adminis
 ---
 
 # University Diploma of Technology — DUT in Computer Science
+
+```yaml
+type: education
+institution: École Supérieure de Technologie
+degree: University Diploma of Technology (DUT) in Computer Science
+start_date: 2019-09
+end_date: 2021-06
+location: Casablanca, Morocco
+subjects:
+  - Programming
+  - Algorithms
+  - Data Structures
+  - Client-Side Web Development
+  - Server-Side Web Development
+  - Object-Oriented Programming
+  - Software Engineering
+  - Database Programming
+  - Databases
+  - Information Systems
+  - Computer Architecture
+  - Systems
+  - Computer Networks
+  - Systems Administration
+  - Network Administration
+  - Database Administration
+  - Mathematics
+```
 
 ## DUT Overview
 
