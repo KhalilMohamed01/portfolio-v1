@@ -1,4 +1,4 @@
-name: CD
+name: Backend CD
 
 on:
   push:
@@ -17,8 +17,8 @@ jobs:
       PROJECT_ID: medk-portfolio
       REGION: europe-west1
       REPOSITORY: portfolio
-      IMAGE_NAME: medk-portfolio
-      SERVICE: portfolio-prod
+      IMAGE_NAME: portfolio-backend
+      SERVICE: portfolio-backend
 
     steps:
       - name: Checkout repository
@@ -40,9 +40,8 @@ jobs:
       - name: Build Docker image
         run: |
           docker build \
-            --build-arg VITE_API_URL="${{ vars.VITE_API_URL }}" \
             -t europe-west9-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:${GITHUB_SHA} \
-            .
+            ./backend
 
       - name: Push Docker image
         run: |
