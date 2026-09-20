@@ -15,6 +15,7 @@ const isLoading = ref(false)
 const error = ref('')
 
 const terminalContent = ref<HTMLElement | null>(null)
+const questionInput = ref<HTMLInputElement | null>(null)
 
 const scrollToBottom = async () => {
   await nextTick()
@@ -22,6 +23,11 @@ const scrollToBottom = async () => {
   if (terminalContent.value) {
     terminalContent.value.scrollTop = terminalContent.value.scrollHeight
   }
+}
+
+const focusInput = async () => {
+  await nextTick()
+  questionInput.value?.focus()
 }
 
 const handleAsk = async () => {
@@ -49,11 +55,13 @@ const handleAsk = async () => {
     await scrollToBottom()
   } finally {
     isLoading.value = false
+    await focusInput()
   }
 }
 
 const handleTypingFinished = async () => {
   await scrollToBottom()
+  await focusInput()
 }
 </script>
 
@@ -105,6 +113,7 @@ const handleTypingFinished = async () => {
         <span class="prompt">&gt;</span>
 
         <input
+          ref="questionInput"
           v-model="question"
           type="text"
           placeholder="Type your question..."
@@ -143,6 +152,7 @@ const handleTypingFinished = async () => {
   overflow-y: auto;
   padding-right: 1rem;
   scrollbar-width: thin;
+  scroll-behavior: smooth;
 }
 
 .terminal-header {
