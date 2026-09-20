@@ -12,9 +12,16 @@ load_dotenv()
 
 app = FastAPI(title="Medk Portfolio API")
 
+
+cors_origin = os.getenv("CORS_ORIGIN")
+
+if not cors_origin:
+    raise RuntimeError("CORS_ORIGIN environment variable is not configured.")
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4000"],
+    allow_origins=[cors_origin],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
