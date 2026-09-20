@@ -230,16 +230,15 @@ onUnmounted(() => {
 <style scoped>
 .projects {
   width: 100%;
-  height: 90vh;
+  height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
   box-sizing: border-box;
   overflow: hidden;
 }
 
 .terminal {
   width: min(1200px, 88%);
+  margin: auto;
   font-size: 1.2rem;
 }
 
