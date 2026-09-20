@@ -8,7 +8,11 @@ import ProjectSection from './components/ProjectSection.vue'
 import EducationSection from './components/EducationSection.vue'
 import AskMeAnythingSection from './components/AskMeAnythingSection.vue'
 
-import { faLinkedin, faGithub, faXTwitter } from '@fortawesome/free-brands-svg-icons'
+import {
+  faLinkedin,
+  faGithub,
+  faXTwitter,
+} from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 type Section = 'who' | 'experience' | 'projects' | 'education' | 'ask'
@@ -26,7 +30,10 @@ function toggleTheme() {
 </script>
 
 <template>
-  <div class="app" :class="{ 'dark-mode': darkMode }">
+  <div
+    class="app"
+    :class="{ 'dark-mode': darkMode }"
+  >
     <NavigationBar
       :dark-mode="darkMode"
       @navigate="navigateToSection"
@@ -36,14 +43,23 @@ function toggleTheme() {
     <main class="content">
       <WhoAmISection v-if="activeSection === 'who'" />
 
-      <ExperienceSection v-else-if="activeSection === 'experience'" />
+      <ExperienceSection
+        v-else-if="activeSection === 'experience'"
+      />
 
-      <ProjectSection v-else-if="activeSection === 'projects'" />
+      <ProjectSection
+        v-else-if="activeSection === 'projects'"
+      />
 
-      <EducationSection v-else-if="activeSection === 'education'" />
+      <EducationSection
+        v-else-if="activeSection === 'education'"
+      />
 
-      <AskMeAnythingSection v-else-if="activeSection === 'ask'" />
+      <AskMeAnythingSection
+        v-else-if="activeSection === 'ask'"
+      />
     </main>
+
     <div class="social-links">
       <a
         href="https://www.linkedin.com/in/mohamed-khalil-gi/"
@@ -63,7 +79,12 @@ function toggleTheme() {
         <FontAwesomeIcon :icon="faGithub" />
       </a>
 
-      <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X">
+      <a
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="X"
+      >
         <FontAwesomeIcon :icon="faXTwitter" />
       </a>
     </div>
@@ -73,12 +94,18 @@ function toggleTheme() {
 <style scoped>
 .app {
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  height: 100dvh;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
 
   background: #f5f5f5;
   color: #111;
-  transition: background-color 0.2s ease, color 0.2s ease;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .app.dark-mode {
@@ -88,11 +115,17 @@ function toggleTheme() {
 
 .content {
   width: 100%;
-  height: 90vh;
-  overflow: hidden;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
+/* =========================
+   Social links
+   ========================= */
+
 .social-links {
   position: fixed;
+
   left: 2rem;
   bottom: 2rem;
 
@@ -100,19 +133,66 @@ function toggleTheme() {
   flex-direction: column;
   gap: 1rem;
 
-  z-index: 10;
+  z-index: 50;
 }
 
 .social-links a {
   color: inherit;
+
   font-size: 1.5rem;
   opacity: 0.7;
 
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .social-links a:hover {
   opacity: 1;
   transform: translateX(3px);
+}
+
+
+/* =========================
+   Mobile
+   ========================= */
+
+@media (max-width: 600px) {
+  .app {
+    height: 100dvh;
+    min-height: 100dvh;
+
+    /*
+     * The page itself can become taller than the viewport
+     * when the navigation menu is open.
+     */
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .content {
+    flex: 0 0 auto;
+
+    /*
+     * Let the section determine its own height on mobile.
+     */
+    min-height: calc(100dvh - 60px);
+
+    overflow: visible;
+  }
+
+  .social-links {
+    left: 50%;
+    bottom: 1rem;
+
+    flex-direction: row;
+    gap: 1.25rem;
+
+    transform: translateX(-50%);
+  }
+
+  .social-links a:hover {
+    transform: none;
+  }
 }
 </style>

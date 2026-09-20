@@ -121,15 +121,15 @@ const showRole = ref(false)
 
 <style scoped>
 .who-am-i {
-  height: 90vh;
+  height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+
   box-sizing: border-box;
 }
 
 .terminal {
   width: min(1000px, 80%);
+  margin: auto;
   font-size: 1.4rem;
 }
 
