@@ -6,11 +6,20 @@ from app.supabase_client import supabase
 from app.retrieval import search_knowledge
 from app.rag import generate_answer
 from app.query_parser import parse_query
-
+from fastapi.middleware.cors import CORSMiddleware
 load_dotenv()
 
 
 app = FastAPI(title="Medk Portfolio API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:4000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+
+)
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 @app.get("/health")
