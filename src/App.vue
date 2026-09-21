@@ -66,6 +66,7 @@ function toggleTheme() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn"
+        title="Linkedin"
       >
         <FontAwesomeIcon :icon="faLinkedin" />
       </a>
@@ -75,6 +76,7 @@ function toggleTheme() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub"
+        title="GitHub"
       >
         <FontAwesomeIcon :icon="faGithub" />
       </a>
@@ -84,6 +86,7 @@ function toggleTheme() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="X"
+        title="X"
       >
         <FontAwesomeIcon :icon="faXTwitter" />
       </a>
